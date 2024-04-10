@@ -24,7 +24,7 @@ Grundlagen:
   -Ist eine Matrix wo die Diagonale positive Werte besitzt und alle anderen Werte negativ sind.
 
 Mathe-Stuff:
-Auf die Einzelheiten der Mathematik hinter dem CF-Algo werde ich nicht eingehen, hierfür leite ich euch auf die letze Quelle. Wir versuchen $$\alpha = \lambdab_S(L + \lambdaD_S)^{-1}$$ auszurechnen.
+Auf die Einzelheiten der Mathematik hinter dem CF-Algo werde ich nicht eingehen, hierfür leite ich euch auf die letze Quelle. Wir versuchen $$\alpha = \lamba b_S(L + \lamda D_S)^{-1}$$ auszurechnen.
 $$b_S$$ ist ein Vektor, welcher für die markierten Pixel eine Alphawert hat und für die Unmarkierten eine 0.
 $$D_S$$ ist eine Diagonalmatrix welche für die markierten Pixel eine 1 hat und für die unmarkierten eine 0.
 $$L$$ ist eine Laplace Matrix, (i,j) Wert, so berechnet wird: $$L_{i j}=\sum_{k \mid(i, j) \in w_k}\left(\delta_{i j}-\frac{1}{\left|w_k\right|}\left(1+\left(I_i-\mu_k\right)\left(\Sigma_k+\frac{\epsilon}{\left|w_k\right|} I_3\right)^{-1}\left(I_j-\mu_k\right)\right)\right.$$
