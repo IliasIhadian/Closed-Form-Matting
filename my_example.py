@@ -1,6 +1,8 @@
-import scipy
+import scipy.sparse.linalg
+import scipy.sparse
 import numpy as np
 from PIL import Image
+
 
 
 """
@@ -13,21 +15,21 @@ trimap = np.array(Image.open("lemur_trimap.png").convert(  "L"))/255.0
 
 h, w, d = image.shape
 
-#is_known = np.zeros((h,w), dtype=bool)
-
-
-
 
 
 """
 Laplace-Matrix berechnen.
 """
+
 #Radius des Fensters
 r = 1
+
 #Fehlerakzeptanz
 epsilon = 1e-7
+
 #Einfach ein Counter der später für die einträge in i,j,v benutzt wird
 k = 0
+
 #Anzahl der Pixel
 n = h*w
 
@@ -36,6 +38,8 @@ window_area = size * size
 
 assert d == 3
 
+#Anzahl der Pixel, welche sich angeschaut werden (manche pixel werden doppelt, 3-fach etc angeschaut),
+#da wir uns die von jedem pixel, welches nicht am Rand ist das Fenster anschauen
 n_v = (w - 2 * r) * (h - 2 * r) * window_area ** 2
 
 # inner_array wird gespeichert y-wert
@@ -93,6 +97,8 @@ for y in range(r,h-r):
 #Hier bauen wir endlich die Laplace Matrix
 L = scipy.sparse.csr_matrix((v, (i, j)), shape=(n, n))
 
+
+
 '''
 Nun könne wir nach alpha ausrechnen
 '''
@@ -120,6 +126,8 @@ alpha = scipy.sparse.linalg.spsolve(A, b).reshape(h, w)
 #Wir fusionieren die Alphawerte mit den dem Bild
 cutout = np.concatenate([image, alpha[:, :, np.newaxis]], axis=2)
 
+
+
 '''
 Nun werden die Alpha-werte als Bild abgespeichert und ausgegeben
 '''
@@ -134,10 +142,10 @@ Image.fromarray(alpha).save("lemur_alpha.png")
 Image.fromarray(alpha).show(title="alpha")
 
 
+
 '''
 Nun wird der Vordergrund als Bild abgespeichert und ausgegeben
 '''
-
 
 #Hier clippen wir die werte wieder zurück zu 0-255 und konvertieren es zu uint8
 cutout = np.clip(cutout*255, 0, 255).astype(np.uint8)
