@@ -8,8 +8,8 @@ Schreib dein eigenes CF Programm
 Ziel: alpha ausrechnen (alles hier auf diesem file)
 """
 
-image  = np.array(Image.open( "../data/lemur/lemur.png").convert("RGB"))/255.0
-trimap = np.array(Image.open("../data/lemur/lemur_trimap.png").convert(  "L"))/255.0
+image  = np.array(Image.open( "lemur.png").convert("RGB"))/255.0
+trimap = np.array(Image.open("lemur_trimap.png").convert(  "L"))/255.0
 
 h, w, d = image.shape
 
