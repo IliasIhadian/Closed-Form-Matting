@@ -24,7 +24,7 @@ Mitte März 2024 habe ich mich mit Alpha-Matting im Rahmen meiner Bachelorarbeit
     - Ist eine Matrix wo die Diagonale positive Werte besitzt und alle anderen Werte negativ sind.
 
 ### Mathe-Stuff:
-Auf die Einzelheiten der Mathematik hinter dem CF-Algo werde ich nicht eingehen, hierfür leite ich euch auf die letze Quelle. Wir versuchen $$\alpha = \lamba b_S(L + \lamda D_S)^{-1}$$ auszurechnen.
+Auf die Einzelheiten der Mathematik hinter dem CF-Algo werde ich nicht eingehen, hierfür leite ich euch auf die letze Quelle. Wir versuchen $$\alpha = \lambda b_S(L + \lambda D_S)^{-1}$$ auszurechnen. <br />
 $$b_S$$ ist ein Vektor, welcher für die markierten Pixel eine Alphawert hat und für die Unmarkierten eine 0.
 $$D_S$$ ist eine Diagonalmatrix welche für die markierten Pixel eine 1 hat und für die unmarkierten eine 0.
 $$L$$ ist eine Laplace Matrix, (i,j) Wert, so berechnet wird: $$L_{i j}=\sum_{k \mid(i, j) \in w_k}\left(\delta_{i j}-\frac{1}{\left|w_k\right|}\left(1+\left(I_i-\mu_k\right)\left(\Sigma_k+\frac{\epsilon}{\left|w_k\right|} I_3\right)^{-1}\left(I_j-\mu_k\right)\right)\right.$$
@@ -42,7 +42,8 @@ $$L$$ ist eine Laplace Matrix, (i,j) Wert, so berechnet wird: $$L_{i j}=\sum_{k 
             1. wir berechnen i und j (ya3ni x und y werte der laplace matrix) 
             (i,j stehen für die pixel I und J und sind die x,y koordinaten der Laplace Matrix)
             (wie legen wir das fenster auf den laplace? laplace ist ein 2d array wobei i ein inner array ist und j die werte innerhalb dieses inner array i = 0, j = 1 wäre 2 )
-                
+                ![form](https://github.com/IliasIhadian/Closed-Form-Matting/assets/74773501/6db3342d-20e1-45c6-9c25-626229fcc3d3)
+
                 ```python
                 i[k] = (x + dxi - r) + (y + dyi - r)*w
                 j[k] = (x + dxj - r) + (y + dyj - r)*w
@@ -54,7 +55,8 @@ $$L$$ ist eine Laplace Matrix, (i,j) Wert, so berechnet wird: $$L_{i j}=\sum_{k 
                 (1.0 if (i[k] == j[k]) else 0.0) - (1 + temp)/window_area
                 ```
             4. und speichern das in v
-3. diese formel anwenden 
+3. diese formel anwenden <br />
+    <img width="166" alt="arr" src="https://github.com/IliasIhadian/Closed-Form-Matting/assets/74773501/3b237e95-4b39-4b07-83c4-a4deeed58720">
 
 4. alpha werte ausgeben BOOM
   
